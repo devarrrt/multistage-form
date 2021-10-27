@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router';
+import { Typography, TextField } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
 import * as yup from "yup";
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+
 import { DataContext } from '../../DataContex';
 import { Form, MainContainer, PrimaryButton } from '..';
-import { Typography, TextField, FormControlLabel } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
 
 const schema = yup.object().shape({
     email: yup
@@ -27,6 +29,17 @@ const Step2 = () => {
         setValues(data)
     }
 
+
+    const normalizePhoneNumber = (value) => {
+        const phoneNumber = parsePhoneNumberFromString(value)
+        if (!phoneNumber) {
+            return value
+        }
+        return (
+            phoneNumber.formatInternational()
+        );
+    }
+
     return (
         <MainContainer>
             <Typography component="h2" variant="h5">
@@ -42,7 +55,16 @@ const Step2 = () => {
                     fullWidth
                     {...register('email')}
                 />
-                <FormControlLabel />
+                <TextField
+                    margin="normal"
+                    variant="outlined"
+                    type="tel"
+                    label="Phone"
+                    name="phoneNumber"
+                    fullWidth
+                    onChange={(event) => event.target.value = normalizePhoneNumber(event.target.value)}
+                />
+
                 <PrimaryButton>Next</PrimaryButton>
             </Form>
         </MainContainer>
