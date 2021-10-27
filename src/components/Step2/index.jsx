@@ -10,7 +10,7 @@ import { DataContext } from '../../DataContex';
 import { Form, MainContainer, PrimaryButton } from '..';
 
 const schema = yup.object().shape({
-    email: yup
+    Email: yup
         .string()
         .email("Email should have correct format")
         .required("Email is a required field"),
@@ -25,7 +25,7 @@ const Step2 = () => {
     })
 
     const onSubmit = (data) => {
-        history.push('/step3')
+        history.push('/result')
         setValues(data)
     }
 
@@ -53,7 +53,7 @@ const Step2 = () => {
                     label="Email"
                     name="email"
                     fullWidth
-                    {...register('email')}
+                    {...register('Email')}
                 />
                 <TextField
                     margin="normal"

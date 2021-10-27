@@ -9,8 +9,8 @@ import { Form, MainContainer, PrimaryButton } from '..'
 import { DataContext } from '../../DataContex';
 
 const schema = yup.object().shape({
-    firstName: yup.string().matches(/^([^0-9]*)$/, "First name should not contain numbers").required("First name is a required field"),
-    lastName: yup.string().matches(/^([^0-9]*)$/, "Last name should not contain numbers").required("Last name is a required field"),
+    Имя: yup.string().matches(/^([^0-9]*)$/, "First name should not contain numbers").required("First name is a required field"),
+    Фамилия: yup.string().matches(/^([^0-9]*)$/, "Last name should not contain numbers").required("Last name is a required field"),
 })
 
 const Step1 = () => {
@@ -36,20 +36,20 @@ const Step1 = () => {
                     margin="normal"
                     variant="outlined"
                     type="text"
-                    label="First Name"
-                    name="firstName"
+                    label="Имя"
+                    name="Имя"
                     fullWidth
-                    {...register('firstName')}
+                    {...register('Имя')}
                 />
                 <TextField
                     margin="normal"
                     variant="outlined"
                     id="lastName"
                     type="text"
-                    label="Last Name"
+                    label="Фамилия"
                     name="lastName"
                     fullWidth
-                    {...register('lastName')}
+                    {...register('Фамилия')}
                 />
                 <PrimaryButton>Next</PrimaryButton>
             </Form>
